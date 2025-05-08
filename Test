@@ -1,0 +1,58 @@
+import java.io.*;
+import java.util.*;
+
+public class CodeGuruBadPracticeTest {
+
+    public static void main(String[] args) {
+        System.out.println("Running bad practices...");
+
+        // Hardcoded credentials
+        String dbUser = "admin";
+        String dbPass = "123456";
+
+        // Inefficient string concatenation in loop
+        String data = "";
+        for (int i = 0; i < 5000; i++) {
+            data += i;
+        }
+
+        // Unclosed file resource
+        try {
+            FileInputStream fis = new FileInputStream("input.txt");
+            byte[] buffer = new byte[1024];
+            fis.read(buffer);
+            System.out.println("Read done.");
+        } catch (IOException e) {
+            // Empty catch block
+        }
+
+        // Deprecated API
+        Date date = new Date(2020, 5, 20);
+        System.out.println("Date: " + date.toGMTString());
+
+        // Raw types
+        List rawList = new ArrayList();
+        rawList.add("No generics");
+
+        // No input validation
+        authenticate("admin", "123456");
+
+        // Redundant code
+        String unused = "I am not used";
+        String alsoUnused = unused;
+
+        // Catch all exceptions
+        try {
+            int a = 5 / 0;
+        } catch (Throwable t) {
+            System.out.println("Something broke");
+        }
+    }
+
+    public static boolean authenticate(String user, String pass) {
+        if (user == "admin" && pass == "123456") {
+            return true;
+        }
+        return false;
+    }
+}
